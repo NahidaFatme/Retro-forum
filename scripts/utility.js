@@ -111,4 +111,40 @@ const toggleSpinner = (isLoading) =>{
     }
 }
 
+const latestPost = async() => {
+    let url = 'https://openapi.programming-hero.com/api/retro-forum/latest-posts';
+    const res = await fetch(url);
+    const data = await res.json();
+    const posts = data;
+    const latestPostsContainer = document.getElementById('latestpostscontainer');
+    for (const post of posts) {
+        const date = post.author.posted_date ? post.author.posted_date : "No publish date";
+        const designation = post.author.designation ? post.author.designation : "Unknown";
+        const div = document.createElement('div');
+        div.classList = `flex flex-col p-6 gap-8 rounded-3xl border-gray-300 border-2`;
+        div.innerHTML = `
+                        <div class="img w-[350px] h-[190px] rounded-3xl mb-6" >
+                            <img src="${post.cover_image}" class="w-auto rounded-3xl">
+                        </div>
+                        <div class="body flex flex-col gap-4">
+                            <div class="flex gap-2 items-center">
+                                <i class="fa-regular fa-calendar"></i>
+                                <p class="text-lg text-third font-medium">${date}</p>
+                            </div>
+                            <h2 class="text-xl font-extrabold">${post.title}</h2>
+                            <p class="text-lg text-third font-medium">${post.description}</p>
+                        </div>
+                        <div class="flex gap-4 items-center justigy-center footer">
+                            <img src="${post.profile_image}" alt="" class="rounded-full w-11 h-11">
+                            <div>
+                                <h2 class="text-xl font-bold">${post.author.name}</h2>
+                                <p class="text-lg text-third font-medium">${designation}</p>
+                            </div>
+                        </div>
+                    
+        `;
+            latestPostsContainer.appendChild(div);
+    }
+}
+latestPost();
 allPost2();
