@@ -1,14 +1,30 @@
-const allPost = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+const search = async() =>{
+    const searchInput = document.getElementById('searchInput');
+    const searchText = searchInput.value;
+    if(searchText){
+        allPost(searchText);
+    }
+}
+
+const allPost = async (searchText) => {
+    let url = `https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`;
+    const res = await fetch(url);
     const data = await res.json();
-    const posts = data.posts
+    const posts = data.posts;
     allPostCards(posts);
 }
 
-allPost();
+const allPost2 = async () => {
+    let url = 'https://openapi.programming-hero.com/api/retro-forum/posts';
+    const res = await fetch(url);
+    const data = await res.json();
+    const posts = data.posts;
+    allPostCards(posts);
+}
 
 const allPostCards = posts => {
     const  mainCards = document.getElementById('main-cards-container');
+    mainCards.textContent = '';
     for (const post of posts) {
         // active button 
         let isActive = post.isActive;
@@ -79,3 +95,5 @@ function totalReadNumber(){
     totalReadCount =  totalReadCount+ 1;
     totalRead.innerText = totalReadCount;
 }
+
+allPost2();
