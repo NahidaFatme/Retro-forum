@@ -3,7 +3,9 @@ const search = async() =>{
     const searchInput = document.getElementById('searchInput');
     const searchText = searchInput.value;
     if(searchText){
-        allPost(searchText);
+        setTimeout(() => {
+            allPost(searchText);
+        }, 2000);
     }
 }
 
@@ -39,7 +41,7 @@ const allPostCards = posts => {
         div.classList = `flex flex-col lg:flex-row gap-6 p-10 rounded-3xl bg-[#F3F3F5] hover:bg-[#797DFC1A] hover:border-2 hover:border-secondary`;
         div.innerHTML = `
                 <div class="relative avatar h-[105px]">
-                    <div class="absolute -top-2 -right-1 ${activeColor} rounded-full w-5 h-5"></div>
+                    <div class="absolute -top-2 left-20 lg:-right-1 ${activeColor} rounded-full w-5 h-5"></div>
                     <div class="w-24 rounded-2xl">
                     <img src="${post.image}" />
                     </div>
@@ -51,7 +53,7 @@ const allPostCards = posts => {
                     </div>
                     <h2 class="text-2xl font-bold text-primary">${post.title}</h2>
                     <p class="text-base font-medium text-third">${post.description}</p>
-                    <div class="flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0">
+                    <div class="flex flex-col lg:flex-row justify-between items-left gap-5 lg:gap-0">
                         <div class="flex gap-3">
                             <div class="flex gap-3 justify-center items-center">
                                 <i class="fa-regular fa-message"></i>
@@ -81,8 +83,8 @@ function recentViewed(id, title, viewCount) {
     const sidecard = document.getElementById('sidecard');
     const div = document.createElement('div');
     div.innerHTML = `
-        <div class="flex flex-row items-center gap-12 bg-white p-4 mt-4 rounded-2xl">
-            <h2 class="text-xl font-bold text-primary">${title}</h2>
+        <div class="flex flex-row items-center gap-8 lg:gap-12 bg-white p-4 mt-4 rounded-2xl">
+            <h2 class="text-base lg:text-xl font-bold text-primary">${title}</h2>
             <div class="flex gap-3 justify-center items-center text-xl font-bold text-third">
                 <i class="fa-regular fa-eye"></i>
                 <p>${viewCount}</p>
@@ -99,15 +101,13 @@ function totalReadNumber(){
     totalRead.innerText = totalReadCount;
 }
 
-const toggleSpinner = (isLoading) =>{
+const toggleSpinner = (isLoading) => {
     const spinner = document.getElementById('spinner');
     if (isLoading){
         spinner.classList.remove('hidden')
     }
     else{
-        setTimeout(() => {
-            spinner.classList.add('hidden');
-        }, 2000);
+        spinner.classList.add('hidden');
     }
 }
 
@@ -123,7 +123,7 @@ const latestPost = async() => {
         const div = document.createElement('div');
         div.classList = `flex flex-col p-6 gap-8 rounded-3xl border-gray-300 border-2`;
         div.innerHTML = `
-                        <div class="img w-[350px] h-[190px] rounded-3xl mb-6" >
+                        <div class="img w-auto lg:w-auto h-[190px] rounded-3xl mb-6" >
                             <img src="${post.cover_image}" class="w-auto rounded-3xl">
                         </div>
                         <div class="body flex flex-col gap-4">
@@ -146,5 +146,6 @@ const latestPost = async() => {
             latestPostsContainer.appendChild(div);
     }
 }
+
 latestPost();
 allPost2();
