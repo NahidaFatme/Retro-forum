@@ -93,8 +93,8 @@
                         <h2 class="text-2xl lg:text-6xl text-white font-extrabold pb-6 custom-line-height">Welcome To The <br> <span class="text-secondary">E-tro</span> Forum</h2>
                         <p class="text-lg text-white font-normal pb-4 lg:pb-8 custom-line-height">Share your favorite opinion and win and wp <br> forum coffee mug !</p>
                         <label class="input input-bordered flex items-center  rounded-full  h-full lg:h-14">
-                            <input type="text" class="grow" placeholder="Search anything"/>
-                            <span class="badge bg-secondary text-white w-full lg:w-28 h-12 font-bold">Search</span>
+                            <input type="text" class="z-10 grow" placeholder="Search anything"/>
+                            <button class="z-10 badge bg-secondary text-white w-full lg:w-28 h-12 font-bold">Search</button>
                         </label>
                     </div>
                     <div class="bg-white rounded-3xl h-72 w-full lg:w-[370px] p-12">
@@ -123,7 +123,28 @@
             </div>
         </div>
     </header>
-    <main></main>
+    <main>
+        <!-- Lets Discuss section -->
+        <section class="mt-10 lg:mt-28 px-5 lg:px-32">
+            <div class="flex flex-col gap-6 text-center">
+                <h2 class="font-extrabold text-4xl">Let's Discuss</h2>
+                <p class="font-medium text-lg text-third">Yes, you can run unit tests and view the results directly within the app. <br> The integrated testing features allow for a streamlined .</p>
+            </div>
+            <!-- Lets discuss Cards Start -->
+            <div class="mt-8 lg:mt-12 flex gap-6">
+                <!-- main cards -->
+                <div id="main-cards-container" class="w-11/12 flex flex-col gap-6">
+                </div>
+                <!-- side cards -->
+                <div id="sidecard" class="bg-[#12132D0D] rounded-3xl h-auto p-6 flex flex-col grow">
+                    <div class="flex justify-between gap-32">
+                        <h2 class="text-2xl font-bold text-primary">Title</h2>
+                        <p class="text-xl font-bold text-third">Mard as read (<span id="totalRead">0</span>)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
     <footer></footer>
 
     <!-- Scripts -->
