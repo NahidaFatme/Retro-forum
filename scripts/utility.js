@@ -1,4 +1,5 @@
 const search = async() =>{
+    toggleSpinner(true);
     const searchInput = document.getElementById('searchInput');
     const searchText = searchInput.value;
     if(searchText){
@@ -72,6 +73,8 @@ const allPostCards = posts => {
         `;
         mainCards.appendChild(div);
     }
+
+    toggleSpinner(false);
 }
 
 function recentViewed(id, title, viewCount) {
@@ -94,6 +97,18 @@ function totalReadNumber(){
     let totalReadCount = parseInt(totalRead.innerText);
     totalReadCount =  totalReadCount+ 1;
     totalRead.innerText = totalReadCount;
+}
+
+const toggleSpinner = (isLoading) =>{
+    const spinner = document.getElementById('spinner');
+    if (isLoading){
+        spinner.classList.remove('hidden')
+    }
+    else{
+        setTimeout(() => {
+            spinner.classList.add('hidden');
+        }, 2000);
+    }
 }
 
 allPost2();
